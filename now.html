@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+        <!-- iPad/iPhone specific css below, add after your main css >
+        <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
+        <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
+        -->
+        <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+        <link rel="stylesheet" media="screen" href="css/jquery.mobile-1.0.1.min.css" type="text/css" />
+        <link rel="stylesheet" media="screen" href="master.css" type="text/css" />
+        <script type="text/javascript" charset="utf-8" src="cordova-1.6.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/custom.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0.1.min.js"></script>
+        <script type="text/javascript">
+
+            function onLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+
+            // once the device ready event fires, you can safely do your thing! -jm
+            function onDeviceReady() {
+                document.addEventListener("backbutton", onBackKeyDown, false);
+            }
+            function showLoadingScreen(durationInSeconds) {
+                if (!durationInSeconds) {
+                    durationInSeconds = prompt("Enter the load duration in seconds", 3);
+                }
+
+                if (durationInSeconds) {
+                    options = {
+                        'duration': durationInSeconds,
+                        'bounceAnimation': true, // defaults to false
+                        'fullScreen': false, // defaults to true
+                        'strokeOpacity': 0.5, // defaults to 0.65
+                        // css3 named color (e.g. 'red') or hex (e.g. FF0000) - no hash prefix! (defaults to white)
+                        'strokeColor': "FF0000",
+                        'backgroundOpacity': 0.2, // defaults to 0.9
+                        'labelText': "Downloading…" // defaults to 'Loading…'
+                    };
+                    navigator.notification.loadingStart(options);
+                }
+            }
+
+            function onBackKeyDown() {
+                document.removeEventListener("backbutton", onBackKeyDown, false);
+                window.location = "index.html";
+            }
+      </script>
+    </head>
+    <body onload="onLoad()">
+        <div data-role="page" data-theme="b">
+            <div data-role="header">
+                <h2 style="text-align:center">Good Night Sleep </h2>
+            </div>
+            <div data-role="content"><br/>
+                <!--<a href="#" id="wakeUp" data-role="button">Give me wake up times</a>-->
+                <div id="wakeupTime"></div>
+                <a href="index.html"  data-role="button" data-ajax="false">Go Back</a>
+            </div>
+            <div data-role="footer"> 
+                <h6>a clockwork app</h6> 
+            </div> 
+        </div>
+        
+        <script type="text/javascript">
+            $("#sleep_now").click(function () {
+                $("#wakeupTime").empty();
+            });
+            $("#sleep_now").click(function () {
+                $("#sleepDisplay").show();
+                $("#wakeupTime2").empty();
+                $("#newTime").hide();
+            });
+            $("#newTime").click(function () {
+                $("#sleepDisplay").show();
+                $("#wakeupTime2").empty();
+                $("#newTime").hide();
+            });
+
+            $(document).ready(function () {
+                // do your thing!
+                var currentTime = new Date();
+                wakeupEarly = new Date(currentTime);
+                wakeupModerate = new Date(currentTime);
+                wakeupLate = new Date(currentTime);
+
+                wakeupEarly.setMinutes(currentTime.getMinutes() + 360);
+                wakeupModerate.setMinutes(currentTime.getMinutes() + 450);
+                wakeupLate.setMinutes(currentTime.getMinutes() + 540);
+
+                earlyHours = wakeupEarly.getHours();
+                earlyMinutes = wakeupEarly.getMinutes();
+                if (earlyMinutes < 10) {
+                    earlyMinutes = "0" + earlyMinutes;
+                }
+
+                moderateHours = wakeupModerate.getHours();
+                moderateMinutes = wakeupModerate.getMinutes();
+                if (moderateMinutes < 10) {
+                    moderateMinutes = "0" + moderateMinutes;
+                }
+
+                lateHours = wakeupLate.getHours();
+                lateMinutes = wakeupLate.getMinutes();
+                if (lateMinutes < 10) {
+                    lateMinutes = "0" + lateMinutes;
+                }
+
+                var ampm = (earlyHours > 11 ? "PM" : "AM");
+                earlyTime = earlyHours + ":" + earlyMinutes + " " + ampm;
+                var ampm = (moderateHours > 11 ? "PM" : "AM");
+                moderateTime = moderateHours + ":" + moderateMinutes + " " + ampm;
+                var ampm = (lateHours > 11 ? "PM" : "AM");
+                lateTime = lateHours + ":" + lateMinutes + " " + ampm;
+
+                var times = earlyTime + "<br/>" + moderateTime + "<br/>" + lateTime;
+                var text_display = "<div class='wakeupText'>Set your alarm the following times to get a healthy sleep</div>" + times;
+                //var times = currentTime + "<br/>" + wakeupEarly + "<br/>" + wakeupModerate + "<br/>" + wakeupLate;
+                $("#wakeupTime").html(text_display);
+
+            });
+        </script>
+    </body>
+</html>

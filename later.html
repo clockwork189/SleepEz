@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+        <!-- iPad/iPhone specific css below, add after your main css >
+        <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
+        <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
+        -->
+        <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+        <link rel="stylesheet" media="screen" href="css/jquery.mobile-1.0.1.min.css" type="text/css" />
+        <link rel="stylesheet" media="screen" href="master.css" type="text/css" />
+        <script type="text/javascript" charset="utf-8" src="cordova-1.6.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/custom.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0.1.min.js"></script>
+        <script type="text/javascript">
+
+            function onLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+
+            // once the device ready event fires, you can safely do your thing! -jm
+            function onDeviceReady() {
+                document.addEventListener("backbutton", onBackKeyDown, false);
+            }
+            function showLoadingScreen(durationInSeconds) {
+                if (!durationInSeconds) {
+                    durationInSeconds = prompt("Enter the load duration in seconds", 3);
+                }
+
+                if (durationInSeconds) {
+                    options = {
+                        'duration': durationInSeconds,
+                        'bounceAnimation': true, // defaults to false
+                        'fullScreen': false, // defaults to true
+                        'strokeOpacity': 0.5, // defaults to 0.65
+                        // css3 named color (e.g. 'red') or hex (e.g. FF0000) - no hash prefix! (defaults to white)
+                        'strokeColor': "FF0000",
+                        'backgroundOpacity': 0.2, // defaults to 0.9
+                        'labelText': "Downloading…" // defaults to 'Loading…'
+                    };
+                    navigator.notification.loadingStart(options);
+                }
+            }
+
+            function onBackKeyDown() {
+                document.removeEventListener("backbutton", onBackKeyDown, false);
+                window.location = "index.html";
+            }
+      </script>
+    </head>
+    <body onload="onLoad()">
+        <div data-role="page" data-theme="b">
+            <div data-role="header">
+                <h2 style="text-align:center">Good Night Sleep </h2>
+            </div>
+            <div data-role="content">
+                <div id="sleepDisplay">
+                <h2>Select your sleep time.</h2><br/>
+                Hour:
+                <select id="hour">
+                    <option value="0">00</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select>
+                Minute:
+                <select id="minute">
+                    <option value="0">00</option>
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+                    <option value="5">05</option>
+                    <option value="6">06</option>
+                    <option value="7">07</option>
+                    <option value="8">08</option>
+                    <option value="9">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                    <option value="49">49</option>
+                    <option value="50">50</option>
+                    <option value="51">51</option>
+                    <option value="52">52</option>
+                    <option value="53">53</option>
+                    <option value="54">54</option>
+                    <option value="55">55</option>
+                    <option value="56">56</option>
+                    <option value="57">57</option>
+                    <option value="58">58</option>
+                    <option value="59">59</option>
+                </select>
+                <br/>
+                <a href="#"  data-role="button" id="laterTime">GO</a>
+                </div>
+                <div id="wakeupTime2"></div>
+                <a href="#"  data-role="button" id="newTime" style="display:none;">New</a>
+                <a href="index.html"  data-role="button" data-ajax="false">Go Back</a>
+
+            </div>
+            <div data-role="footer"> 
+                <h6>a clockwork app</h6> 
+            </div>             
+        </div>
+
+        <script type="text/javascript">
+            $("#sleep_now").click(function () {
+                $("#wakeupTime").empty();
+            });
+            $("#sleep_now").click(function () {
+                $("#sleepDisplay").show();
+                $("#wakeupTime2").empty();
+                $("#newTime").hide();
+            });
+            $("#newTime").click(function () {
+                $("#sleepDisplay").show();
+                $("#wakeupTime2").empty();
+                $("#newTime").hide();
+            });
+
+            $("#laterTime").click(function () {
+                var hour = $("#hour").val();
+                var minute = $("#minute").val();
+                var earlyHours = ConvertHour(parseInt(hour) + 6);
+                var earlyMinutes = minute;
+                var lateHours = ConvertHour(parseInt(hour) + 9);
+                var lateMinutes = minute;
+                var moderateHours = (parseInt(minute) >= 30 ? ConvertHour(parseInt(hour) + 8) : ConvertHour(parseInt(hour) + 7 ) );
+                var moderateMinutes = ConvertMinute(parseInt(minute) + 30);
+                var ampm = (earlyHours > 11 ? "PM" : "AM");
+                var earlyTime = TimeFormat(earlyHours) + ":" + TimeFormat(earlyMinutes) + " " + ampm;
+                var ampm1 = (moderateHours > 11 ? "PM" : "AM");
+                var moderateTime = TimeFormat(moderateHours) + ":" + TimeFormat(moderateMinutes) + " " + ampm1;
+                var ampm2 = (lateHours > 11 ? "PM" : "AM");
+                var lateTime = TimeFormat(lateHours) + ":" + TimeFormat(lateMinutes) + " " + ampm2;
+
+                var times = earlyTime + "<br/>" + moderateTime + "<br/>" + lateTime;
+                var textDisplay = "<div class='wakeupText'>Set your alarm the following times to get a healthy sleep</div>" + times;
+                $("#sleepDisplay").hide();
+                $("#newTime").show();
+                $("#wakeupTime2").html(textDisplay);
+
+            });
+            
+            function TimeFormat(variable) {
+                if(variable < 10) {
+                    variable = "0" + variable;
+                }
+                return variable;
+            }
+            
+            function ConvertHour(hour) {
+                if(hour >= 24) {
+                    hour -= 24;
+                }
+                return hour;
+            }
+            function ConvertMinute(minute) {
+                if (minute >= 60) {
+                    minute -= 60;
+                }
+                return minute;
+            }
+        </script>
+    </body>
+</html>
